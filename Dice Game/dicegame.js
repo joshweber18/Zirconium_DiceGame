@@ -8,28 +8,40 @@ function runGame() { // master function
     var winningNumber = 3;
     let playerOneCounter = 0;
     let playerTwoCounter = 0;
+    let winningCount = 6;
+    while(playerOneCounter < winningCount && playerTwoCounter < winningCount) { // run one round
+        playerOneRolls = rollDice(playerOneDice);
+        playerTwoRolls = rollDice(playerTwoDice);
 
-    while(playerOneCounter < 6 && playerTwoCounter < 6) { // run one round
-        playerOneRolls = rollDice(playerOneRolls);
-        playerTwoRolls = rollDice(playerTwoRolls);
-
-        // how many 3s did player one get?
         for (let i = 0; i < playerOneRolls.length; i++){
-            if (playerOneRolls[i] === 3){
-                playerOneCounter++;
+            if (playerOneRolls[i] === winningNumber){
+                 playerOneCounter++;
             }
         }
 
         for (let i = 0; i < playerTwoRolls.length; i++){
-            if (playerTwoRolls[i] === 3){
+            if (playerTwoRolls[i] === winningNumber){
                 playerTwoCounter++;
             }
         }
-    }
-    
-    // display winner
-
+        
+        if (playerOneCounter >= winningCount){
+        window.alert("Player One Wins! " + playerOneCounter + "-" + playerTwoCounter);
+        }
+        else if (playerTwoCounter >= winningCount){
+        window.alert("Player Two Wins! " + playerTwoCounter + "-" + playerOneCounter);
+        }
 }
+
+
+
+/*function updateScore() {
+    for (let i = 0; i < playerOneRolls.length; i++){
+        if (playerOneRolls[i] === winningNumber){
+            playerOneCounter++;
+        }
+    }
+}*/
 
 function rollDie(numberOfSides) {
     return Math.floor(Math.random()*numberOfSides)+1;
@@ -43,7 +55,6 @@ function rollDice(diceArray) {
     }
     return playerRolls;
 }
-for (i = 0; i )
 
 
 console.log(runGame());
